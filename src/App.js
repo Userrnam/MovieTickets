@@ -83,41 +83,41 @@ export default class App extends React.Component {
 
     render() {
         console.log(this.pagecontent);
-        return (
-            <main>
-                <div class="sb-supplylist">
-                    <input class="new-session-input"
-                        type="text"
-                        placeholder="Время"
-                        id="session-time"
-                    />
-                    <input class="new-session-input"
-                        type="text"
-                        placeholder="Фильм"
-                        id="session-movie"
-                    />
-                    <input class="new-session-input"
-                        type="text"
-                        placeholder="Количество мест"
-                        id="session-seat-count"
-                    />
-                    <button type="button" class="new-session-input" id="add-session" onClick={this.onAddSession}>
-                        Добавить сеанс
-                    </button>
-                </div>
-                {
-                    this.state.sessions
-                    // ------- this corrupts objects
-                    .sort(function(a, b) {
+        console.log(this.state.sessions);
+        const sortedSessions = this.state.sessions.sort(function(a, b) {
                         const ah = parseInt(a.time.substring(0, 2))
                         const am = parseInt(a.time.substring(3, 5))
                         const bh = parseInt(b.time.substring(0, 2))
                         const bm = parseInt(b.time.substring(3, 5))
                         return 100 * ah + am - (100 * bh + bm)
                     })
-                    // --------------------
+        return (
+            <main>
+                <div className="sb-supplylist">
+                    <input className="new-session-input"
+                        type="text"
+                        placeholder="Время"
+                        id="session-time"
+                    />
+                    <input className="new-session-input"
+                        type="text"
+                        placeholder="Фильм"
+                        id="session-movie"
+                    />
+                    <input className="new-session-input"
+                        type="text"
+                        placeholder="Количество мест"
+                        id="session-seat-count"
+                    />
+                    <button type="button" className="new-session-input" id="add-session" onClick={this.onAddSession}>
+                        Добавить сеанс
+                    </button>
+                </div>
+                {
+                    sortedSessions
                     .map(session => (
                         <SupList
+                            key={Math.random()}
                             id={session.id}
                             time={session.time}
                             movie={session.movie}
