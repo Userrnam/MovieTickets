@@ -6,8 +6,7 @@
   --mid-color: #e3e8f8;
 
   --shadow-color: #00000029;
-  --supplylist-last-back-color: #dadce073;
-  --supplylist-back-color: #dadce0;
+  --sessionlist-back-color: #dadce0;
 
   --main-header-text-color: var(--dark-color);
 }
@@ -47,23 +46,14 @@ main {
   column-gap: calc(8% / 3);
 }
 
-.sb-supplylist {
+.sessionlist {
   width: 100%;
   box-sizing: border-box;
   border-radius: 0.4vw;
   border: 1px solid var(--dark-color);
   padding: 1vw 1.2vw;
   box-shadow: 2px 2px 4px var(--shadow-color);
-  background-color: var(--supplylist-back-color);
-}
-
-.sb-supplylist:last-child {
-  background-color: var(--supplylist-last-back-color);
-  transition: background-color 1s ease;
-}
-
-.sb-supplylist:last-child:hover {
-  background-color: var(--supplylist-back-color);
+  background-color: var(--sessionlist-back-color);
 }
 
 #add-session-prompt {
@@ -100,7 +90,7 @@ main {
   color: black;
 }
 
-.sb-supplylist-heads {
+.sessionlist-heads {
   overflow-wrap: anywhere;
   font-size: clamp(0.6rem, 1vw, 1.2rem);
   font-weight: 500;
@@ -125,7 +115,7 @@ main {
   margin-top: 1.5vw;
 }
 
-.sb-supplylist-add-supply {
+.sessionlist-add-client {
   border: none;
   background: none;
   font-size: clamp(0.7rem, 1.5vw, 1.5rem);
@@ -133,23 +123,23 @@ main {
   padding: 1vw;
 }
 
-.sb-supplylist-footer,
-.sb-supplylist > div:first-child {
+.sessionlist-footer,
+.sessionlist > div:first-child {
   text-align: center;
   padding: 1vw;
 }
 
-.sb-supplylist-add-supply:hover {
+.sessionlist-add-client:hover {
   font-weight: 600;
   cursor: pointer;
 }
 
-.sb-supplylist-supply-clickable:hover {
+.sessionlist-client-clickable:hover {
     font-weight: 600;
     cursor: pointer;
 }
 
-.sb-supplylist-supply {
+.sessionlist-client {
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -167,19 +157,19 @@ main {
   font-size: clamp(0.7rem, 1.4vw, 1.5rem);
 }
 
-.sb-supplylist-supply:hover {
+.sessionlist-client:hover {
   background-color: var(--mid-color);
   border-color: var(--dark-color);
 }
 
-.sb-supplylist-supply-controls-button {
+.sessionlist-client-controls-button {
   width: 2.5vw;
   height: 2.5vw;
   opacity: 0.6;
   border: none;
 }
 
-.sb-supplylist-supply-text {
+.sessionlist-client-text {
   display: flex;
   justify-content: space-between;
   width: 40%;
@@ -188,16 +178,15 @@ main {
 .session-ticket-count {
   display: flex;
   justify-content: center;
-  /* width: 18%; */
 }
 
-.sb-supplylist-supply-controls {
+.sessionlist-client-controls {
   display: flex;
   justify-content: space-between;
   width: 6%;
 }
 
-.sb-supplylist-supply-controls-button:hover {
+.sessionlist-client-controls-button:hover {
   opacity: 1;
   cursor: pointer;
 }
@@ -206,8 +195,7 @@ main {
   background: url(./content/del-button.svg) center / cover;
 }
 
-#add-supplylist-input,
-.sb-supply-field {
+.client-field {
   box-sizing: border-box;
   width: 100%;
   border: 1px solid var(--dark-color);
@@ -221,9 +209,7 @@ main {
   display: none;
 }
 
-#add-supplylist-input:hover,
-#add-supplylist-input:focus,
-.sb-supply-field:hover,
-.sb-supply-field:focus {
+.client-field:hover,
+.client-field:focus {
   opacity: 1;
 }

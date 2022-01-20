@@ -24,7 +24,7 @@ class Blank extends React.Component {
             ch = 1;
 
         const elem = document
-            .getElementById(`supply-${this.props.parent.props.id}-${this.props.id}`)
+            .getElementById(`session-${this.props.parent.props.id}-${this.props.id}`)
             .children[ch];
         elem.lastChild.style.display = "none";
         elem.lastChild.value = "";
@@ -41,7 +41,7 @@ class Blank extends React.Component {
             ch = 1;
 
         const val = document
-        .getElementById(`supply-${this.props.parent.props.id}-${this.props.id}`)
+        .getElementById(`session-${this.props.parent.props.id}-${this.props.id}`)
         .children[ch].lastChild.value;
         
         if(val)
@@ -76,13 +76,13 @@ class Blank extends React.Component {
     onEditField = ({target}) => {
         let ch = -1;
 
-        if(target.className.includes("sb-supplylist-supply-text-field"))
+        if(target.className.includes("sessionlist-client-text-field"))
             ch = 0;
         if(target.className.includes("session-ticket-count-field"))
             ch = 1;
         
         const input = document
-            .getElementById(`supply-${this.props.parent.props.id}-${this.props.id}`)
+            .getElementById(`session-${this.props.parent.props.id}-${this.props.id}`)
             .children[ch].lastChild;
         target.style.display = 'none';
         input.style.display = "inherit";
@@ -106,37 +106,37 @@ class Blank extends React.Component {
     }
 
     render() {
-        const myId = `supply-${this.props.parent.props.id}-${this.props.id}`;
+        const myId = `session-${this.props.parent.props.id}-${this.props.id}`;
         return (
-            <li class="sb-supplylist-supply" id={myId}>
-                <div class="sb-supplylist-supply-text sb-supplylist-supply-clickable">
-                    <span class="sb-supplylist-supply-text-field" onClick={this.onEditField}>
+            <li class="sessionlist-client" id={myId}>
+                <div class="sessionlist-client-text sessionlist-client-clickable">
+                    <span class="sessionlist-client-text-field" onClick={this.onEditField}>
                         {this.state.name}
                     </span>
                     <input
                         type="text"
                         placeholder="Фамилия"
-                        class="client-info sb-supply-field"
+                        class="client-info client-field"
                         onKeyDown={this.onInputKeyDown}
                         onBlur={this.onApplyField}
                         // maxLength="10"
                     />
                 </div>
-                <span class="session-ticket-count sb-supplylist-supply-clickable">
+                <span class="session-ticket-count sessionlist-client-clickable">
                     <span class="session-ticket-count-field" onClick={this.onEditField}>
                         {this.state.count}
                     </span>
                     <input
                         type="number"
                         placeholder=""
-                        class="session-ticket-count-input sb-supply-field"
+                        class="session-ticket-count-input client-field"
                         onKeyDown={this.onInputKeyDown}
                         onBlur={this.onApplyField}
                         // maxLength="4"
                     />
                 </span>
-                <div class="sb-supplylist-supply-controls">
-                  <button type="button" class="sb-supplylist-supply-controls-button del-button" onClick={this.onDelete}></button>
+                <div class="sessionlist-client-controls">
+                  <button type="button" class="sessionlist-client-controls-button del-button" onClick={this.onDelete}></button>
                 </div>
             </li>
         );

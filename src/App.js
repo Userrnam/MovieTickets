@@ -93,7 +93,7 @@ export default class App extends React.Component {
                     })
         return (
             <main>
-                <div className="sb-supplylist">
+                <div className="sessionlist">
                     <input className="new-session-input"
                         type="text"
                         placeholder="Время"

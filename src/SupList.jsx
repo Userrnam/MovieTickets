@@ -39,19 +39,19 @@ class Stage extends React.Component {
         if(this.state.blankCount > 0) 
         {
             elems_head = (
-                <div class="sb-supplylist-heads">
-                    <span class="sb-supplylist-supply-text">
+                <div class="sessionlist-heads">
+                    <span class="sessionlist-client-text">
                         Фамилия
                     </span>
                     <span class="session-ticket-count">
                         Количество Билетов
                     </span>
-                    <div class="sb-supplylist-supply-controls"></div>
+                    <div class="sessionlist-client-controls"></div>
                 </div>
             )
 
             elems_blanks = (
-                <ul class="sb-supplylist-supplies">
+                <ul class="sessionlist-supplies">
                     {
                         this.state.blanks.map(blank => (
                             <Blank
@@ -67,7 +67,7 @@ class Stage extends React.Component {
 
         if (this.state.seatsLeft > 0) {
             return (
-                <div class="sb-supplylist" id={this.props.id}>
+                <div class="sessionlist" id={this.props.id}>
                     <header class="add-client-header">
                         <span>Время: {this.props.time}</span>
                         <span>Фильм: {this.props.movie}</span>
@@ -75,8 +75,8 @@ class Stage extends React.Component {
                     </header>
                     {elems_head}
                     {elems_blanks}
-                    <footer class="sb-supplylist-footer">
-                        <button type="button" class="sb-supplylist-add-supply" onClick={this.onCreateBlank}>
+                    <footer class="sessionlist-footer">
+                        <button type="button" class="sessionlist-add-client" onClick={this.onCreateBlank}>
                             Добавить посетителя
                         </button>
                     </footer>
@@ -85,7 +85,7 @@ class Stage extends React.Component {
         }
 
         return (
-            <div class="sb-supplylist" id={this.props.id}>
+            <div class="sessionlist" id={this.props.id}>
                 <header class="add-client-header">
                     <span class="session-time">{this.props.time}, {this.props.movie}, осталось мест: {this.state.seatsLeft}</span>
                 </header>
