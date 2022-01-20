@@ -61,7 +61,7 @@ class Blank extends React.Component {
                 this.setState({name: val})
                 stateCopy.name = val
             }
-            else if(ch === 1 && val >= 0) {
+            else if(ch === 1 && val >= 1) {
                 const iVal = parseInt(val)
                 var seatsLeft = this.props.parent.state.seatsLeft + this.state.count
                 if (seatsLeft - iVal > 0) {

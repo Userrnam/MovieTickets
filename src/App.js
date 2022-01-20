@@ -13,6 +13,7 @@ export default class App extends React.Component {
         this.cleanInput = this.cleanInput.bind(this);
         this.onInputKeyDown = this.onInputKeyDown.bind(this);
         this.onAddSession = this.onAddSession.bind(this);
+        window.localStorage.clear()
     }
 
     cleanInput = () => {

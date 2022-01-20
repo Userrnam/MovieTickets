@@ -25,7 +25,6 @@ class Stage extends React.Component {
         this.onShow = this.onShow.bind(this)
     }
 
-    // Looks like junk aka JS
     setSeatsLeft = (count) => {
         this.setState({
             seatsLeft: count
