@@ -116,6 +116,8 @@ class Blank extends React.Component {
         p.setState({
             blanks: blanks,
         });
+
+        this.props.forceRerender()
     }
 
     render() {

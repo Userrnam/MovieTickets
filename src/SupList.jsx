@@ -42,13 +42,26 @@ class Stage extends React.Component {
         this.setState({
             blanks: [...this.state.blanks, {
                 id: this.state.idCounter, 
-                parent: this,
             }],
             idCounter: this.state.idCounter + 1,
         })
     }
 
+    // This looks awful, but we are in JS
+    forceRerender = () => {
+        this.setState({
+            show: !this.state.show
+        }, () => {
+            this.setState({
+                show: !this.state.show
+            })
+        })
+    }
+
     render() {
+
+        const id = "Session:" + this.props.id
+        window.localStorage.setItem(id, JSON.stringify(this.state))
 
         if (!this.state.show) {
             return (
@@ -86,8 +99,9 @@ class Stage extends React.Component {
                         this.state.blanks.map(blank => (
                             <Blank
                                 id={blank.id}
-                                parent={blank.parent}
+                                parent={this}
                                 setSeatsLeft={this.setSeatsLeft}
+                                forceRerender={this.forceRerender}
                             />
                         ))
                     }
