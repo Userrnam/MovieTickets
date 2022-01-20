@@ -195,6 +195,22 @@ main {
   background: url(./content/del-button.svg) center / cover;
 }
 
+.left-arrow-button {
+  width: 2.5vw;
+  height: 2.5vw;
+  opacity: 0.6;
+  border: none;
+  background: url(./content/left-arrow.png) center / cover;
+}
+
+.down-arrow-button {
+  width: 2.5vw;
+  height: 2.5vw;
+  opacity: 0.6;
+  border: none;
+  background: url(./content/down-arrow.png) center / cover;
+}
+
 .client-field {
   box-sizing: border-box;
   width: 100%;

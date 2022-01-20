@@ -4,10 +4,19 @@ class Blank extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
+        const id = this.props.parent.props.id + "." + this.props.id
+
+        const state = window.localStorage.getItem(id)
+        this.state = JSON.parse(state) || {
             name: "Фамилия",
-            count: 0
+            count: 1
         };
+
+        // save the state, otherwise it will be forgotten!
+        if (!state) {
+            window.localStorage.setItem(id, JSON.stringify(this.state))
+            this.props.setSeatsLeft(this.props.parent.state.seatsLeft-1)
+        }
 
         this.onDelete = this.onDelete.bind(this);
         this.onEditField = this.onEditField.bind(this);
@@ -43,23 +52,31 @@ class Blank extends React.Component {
         const val = document
         .getElementById(`session-${this.props.parent.props.id}-${this.props.id}`)
         .children[ch].lastChild.value;
+
+        // react is async. This is junk
+        const stateCopy = this.state
         
-        if(val)
-        {
-            if(ch === 0)
+        if(val) {
+            if(ch === 0) {
                 this.setState({name: val})
+                stateCopy.name = val
+            }
             else if(ch === 1 && val >= 0) {
                 const iVal = parseInt(val)
-                this.props.parent.state.seatsLeft += this.state.count
-                if (this.props.parent.state.seatsLeft - iVal > 0) {
-                    this.props.parent.state.seatsLeft -= iVal;
+                var seatsLeft = this.props.parent.state.seatsLeft + this.state.count
+                if (seatsLeft - iVal > 0) {
+                    seatsLeft -= iVal;
                     this.setState({count: iVal})
+                    stateCopy.count = iVal
                 } else {
-                    this.setState({count: this.props.parent.state.seatsLeft})
-                    this.props.parent.state.seatsLeft = 0;
+                    this.setState({count: seatsLeft})
+                    stateCopy.count = seatsLeft
+                    seatsLeft = 0;
                 }
-                this.props.setSeatsLeft(this.props.parent.state.seatsLeft)
+                this.props.setSeatsLeft(seatsLeft)
             }
+            const id = this.props.parent.props.id + "." + this.props.id
+            window.localStorage.setItem(id, JSON.stringify(stateCopy))
         }
         this.cleanInput({ target });
     }
@@ -91,18 +108,14 @@ class Blank extends React.Component {
 
     onDelete = () => {
         const p = this.props.parent;
+
+        this.props.setSeatsLeft(p.state.seatsLeft + this.state.count)
+
         let blanks = p.state.blanks.filter((blank) => blank.id !== this.props.id);
-        let bCount = 0;
-        blanks.forEach((blank) => {
-            blank.id = bCount;
-            bCount += 1;
-        })
 
         p.setState({
             blanks: blanks,
-            blankCount: bCount
-        }); 
-            
+        });
     }
 
     render() {
@@ -119,7 +132,6 @@ class Blank extends React.Component {
                         class="client-info client-field"
                         onKeyDown={this.onInputKeyDown}
                         onBlur={this.onApplyField}
-                        // maxLength="10"
                     />
                 </div>
                 <span class="session-ticket-count sessionlist-client-clickable">
@@ -132,7 +144,6 @@ class Blank extends React.Component {
                         class="session-ticket-count-input client-field"
                         onKeyDown={this.onInputKeyDown}
                         onBlur={this.onApplyField}
-                        // maxLength="4"
                     />
                 </span>
                 <div class="sessionlist-client-controls">
